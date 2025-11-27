@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.ant-table-cell-row-hover{
+    background: var(--ant-table-row-selected-hover-bg) !important;
+}
