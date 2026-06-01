@@ -64,7 +64,7 @@ export type gpuType = {
 
 const useDataSource = () => {
   const [dataVersion, setDataVersion] =
-    useLocalStorageState<string>("cpu-data-version");
+    useLocalStorageState<string>("gpu-data-version");
   useEffect(() => {
     if (dataVersion !== gpuDataVersion) {
       setDataVersion(gpuDataVersion);
@@ -72,7 +72,7 @@ const useDataSource = () => {
     }
   }, [dataVersion, setDataVersion]);
 
-  const [data, setData] = useLocalStorageState<gpuType[]>("cpu-data", {
+  const [data, setData] = useLocalStorageState<gpuType[]>("gpu-data", {
     defaultValue: gpuData,
     listenStorageChange: true,
   });
@@ -122,7 +122,7 @@ const useDataSource = () => {
             ? Math.floor((item.threeDMarkScore / item.price) * 100)
             : 0,
         };
-      })
+      }),
     );
   };
 
@@ -219,7 +219,7 @@ export default function GPU() {
               setTimeout(() => {
                 window.open(
                   "https://www.topcpu.net/cpu-r5/3dmark-time-spy",
-                  "_blank"
+                  "_blank",
                 );
               }, 1000);
             }
@@ -306,7 +306,7 @@ export default function GPU() {
                 item.vram.toLowerCase(),
               ]
                 .join("")
-                .includes(search.toLowerCase())
+                .includes(search.toLowerCase()),
             )}
           pagination={false}
           rowKey={"name"}
