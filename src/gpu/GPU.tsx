@@ -177,12 +177,13 @@ function Price({ record }: { record: gpuType }) {
   );
 }
 
+const defaultMinTime = "2020-01-01";
 export default function GPU() {
   const { data, addData, reset } = useDataSource();
   const [dataInput, setDataInput] = useState("");
   const [search, setSearch] = useState("");
   const [minScore, setMinScore] = useState(10000);
-  const [minTime, setMinTime] = useState(dayjs("2020-01-01"));
+  const [minTime, setMinTime] = useState(dayjs(defaultMinTime));
   const [brands, setBrands] = useState(["AMD", "NVIDIA"]);
 
   const addDataFromInput = (input: string) => {
@@ -264,7 +265,10 @@ export default function GPU() {
           </div>
           <div>
             最迟发布&nbsp;
-            <DatePicker.YearPicker value={minTime} onChange={setMinTime} />
+            <DatePicker.YearPicker
+              value={minTime}
+              onChange={(date) => setMinTime(date || dayjs(defaultMinTime))}
+            />
           </div>
           <div>
             品牌&nbsp;
